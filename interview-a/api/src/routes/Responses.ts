@@ -1,4 +1,4 @@
-import StatusCodes from 'http-status-codes';
+import StatusCodes, { NOT_FOUND } from 'http-status-codes';
 import { Request, Response } from 'express';
 
 import ResponseDao from '@daos/Response/ResponseDao.mock';
@@ -7,6 +7,16 @@ import { paramMissingError } from '@shared/constants';
 const responseDao = new ResponseDao();
 const { BAD_REQUEST, CREATED, OK } = StatusCodes;
 
+
+export async function getResponses(req: Request, res: Response) {
+    const responses = await responseDao.getAll();
+
+    if (responses) {
+        return res.status(OK).json({ responses });
+    } else {
+        return res.status(NOT_FOUND).end();
+    }
+}
 
 /**
  * Add a response.

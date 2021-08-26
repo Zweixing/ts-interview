@@ -9,6 +9,7 @@ import "./App.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import SurveyView from "./views/SurveyView"
 import { Container, Button } from "react-bootstrap";
+import ResponseTotals from "./views/ResponseTotals";
 
 function App() {
   return (
@@ -24,7 +25,8 @@ function App() {
             <SurveyView surveyId={1}/>
           </Route>
         </Switch>
-      </Container>
+          </Container>
+          <ResponseTotals />
     </Router>
   );
 }
